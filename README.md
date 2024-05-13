@@ -6,111 +6,75 @@
 ![Django](https://img.shields.io/badge/Django-4.2-white?logo=django)
 ![Django Rest Framework](https://img.shields.io/badge/Django%20Rest%20Framework-3.14-orange)
 
-## Website
+## Overview
 
-[Visit Climate Cockpit](https://climate-cockpit.propulsion-learn.ch/)
+Climate Cockpit stands as an inventive platform addressing a critical question:
+What's the environmental impact of your daily choices? As climate change
+consistently takes center stage as a top concern, individuals are increasingly
+eager to comprehend the tangible effects of their actions on the planet.
 
-## Wireframe
+Serving as a visual and interactive hub, Climate Cockpit enables users not only
+to explore and engage with climate solutions aimed at reducing Switzerland's
+greenhouse gas (GHG) emissions but also to monitor their personal and social
+progress in adopting environmentally friendly practices.
 
-Explore our wireframe on Figma:
-[Climate Cockpit Wireframe](https://www.figma.com/file/KMcmmUApmDXahwsdGtfjAA/)
+Embark on your journey with
+[Climate Cockpit](https://climate-cockpit.propulsion-learn.ch/).
 
-## Object Role Modeling
+## Technical Features
 
-![Object Role Modeling](models.png)
+1. **GHG Emissions Dashboard:**
 
-## Backend API Endpoints
+   - Experience a visually intuitive dashboard presenting real-time data on
+     Switzerland's GHG emissions.
 
-For a comprehensive understanding of our API, refer to our interactive
-[Swagger documentation](https://climate-cockpit.propulsion-learn.ch/api/docs/).
+2. **Interactive Climate Solutions List:**
 
-### API Endpoints
+   - Engage with an appealing list highlighting various climate solutions, each
+     accompanied by its specific impact on reducing GHG emissions in
+     Switzerland.
 
-You can access our API at `https://climate-cockpit.propulsion-learn.ch/api/`.
+3. **Detailed Solution Information:**
 
-#### Solutions
+   - Dive into comprehensive insights for each climate solution, including
+     detailed explanations, progress updates, enriching videos, and curated
+     articles, ensuring users stay well-informed.
 
-- `GET /solutions/list/`: Get a list of all available solutions.
-- `GET /solutions/category/`: Get a list of all solution categories.
-- `GET /solutions/support/<int:user_id>/`: Get the solutions supported by a
-  specific user.
-- `GET /solutions/impact/<int:user_id>/`: Get the impact for a specific user.
-- `GET /solutions/scorecard/<int:user_id>/`: Get the scorecard for a specific
-  user.
-- `GET /solutions/dashboard/<int:user_id>/`: Get the dashboard for a specific
-  user.
+4. **Personalized Climate Profiles:**
 
-#### Registration
+   - Create and manage personalized profiles, allowing users to track and
+     support their chosen climate solutions, fostering a sense of individual
+     impact.
 
-- `POST /auth/registration/`: Register a new user by providing an email (a
-  validation code will be sent to the given email).
-- `POST /auth/registration/validation/`: Validate the creation of a new user
-  with the code sent via email.
+5. **Social Connectivity:**
 
-#### Authentication
+   - Connect with fellow users, compare climate profiles, and participate in
+     meaningful discussions through posts and comments. Contribute to building a
+     community committed to positive climate action!
 
-- `POST /auth/token/`: Get a new JWT by sending an email and password.
-- `POST /auth/token/refresh/`: Get a new JWT by passing an old still valid
-  refresh token.
-- `POST /auth/token/verify/`: Verify the validity of a token.
-- `POST /auth/password-reset/`: Reset a user’s password by sending a validation
-  code in an email.
-- `POST /auth/password-reset/validation/`: Validate the password reset token and
-  set a new password for the user.
+6. **AI Interaction:**
+   - Interact with AI-driven features such as a fact checker, ensuring accurate
+     information, and a motivator providing feedback on user posts, elevating
+     the overall user experience.
 
-#### Posts
+## Technology Stack
 
-- `POST /social/posts/`: Create a new post by sending post data. Users can also
-  share another post.
-- `GET /social/posts/`: List all the posts of all users in chronological order.
-- `GET /social/posts/?search=<str:search_string>`: Search posts of all users and
-  list results in chronological order.
-- `GET /social/posts/<int:post_id>/`: Get a specific post by ID and display all
-  the information about that post.
-- `PATCH /social/posts/<int:post_id>/`: Update a specific post (allowed for the
-  owner of the post or an admin).
-- `DELETE /social/posts/<int:post_id>/`: Delete a post by ID (allowed for the
-  owner of the post or an admin).
-- `GET /social/posts/user/<int:user_id>/`: List all the posts of a specific user
-  in chronological order.
-- `GET /social/posts/following/`: List all the posts of followed users in
-  chronological order.
-- `GET /social/posts/friends/`: List all the posts of the logged-in user’s
-  friends in chronological order.
-- `POST /social/posts/toggle-like/<int:post_id>/`: Like/Unlike a post (works as
-  a toggle).
-- `GET /social/posts/likes/`: List the posts that the logged-in user likes.
+This Single Page Application (SPA) utilizes React.js for the frontend, while the
+backend is powered by Django, and Django REST Framework, with data integrity
+maintained within a PostgreSQL database management system. Docker and Docker
+Compose ensure seamless containerization, and GitLab CI pipelines facilitate
+efficient development and deployment on Digital Ocean servers.
 
-#### Comments
+## Demo
 
-- `POST /social/comments/new/<int:post_id>/`: Create a new comment for a post.
-- `GET /social/comments/<int:comment_id>/`: Get a comment.
-- `DELETE /social/comments/<int:comment_id>/`: Delete a comment.
-- `GET /social/comments/<int:post_id>/`: List all comments of a post.
+### Hero Page ![Hero](/frontend/src/images/hero.png)
 
-#### Users
+### Solutions Page ![Hero](/frontend/src/images/solutions.png)
 
-- `GET /users/me/`: Get the logged-in user’s profile (including private
-  information like email, etc.).
-- `PATCH /users/me/`: Update the logged-in user’s profile public info.
-- `DELETE /users/me/`: Delete the logged-in user’s profile and all related data
-  (posts, comments, likes, etc.).
-- `POST /social/followers/toggle-follow/<int:user_id>/`: Toggle follow/unfollow
-  a user.
-- `GET /social/followers/followers/`: List of all the logged-in user’s
-  followers.
-- `GET /social/followers/following/`: List of all the people the current
-  logged-in user is following.
-- `POST /social/friends/request/<int:user_id>/`: Send a friend request to
-  another user.
-- `GET /social/friends/requests/<int:friend_request_id>/`: Get details of a
-  friend request.
-- `PATCH /social/friends/requests/<int:friend_request_id>/`: Accept or Reject an
-  open friend request (allowed for the recipient of the friend request or an
-  admin).
-- `DELETE /social/friends/requests/<int:friend_request_id>/`: Delete a friend
-  request (allowed for the sender of the friend request or an admin).
-- `GET /social/friends/`: List all accepted friends.
-- `GET /users/`: Get all the users.
-- `GET /users/?search=<str:search_string>`: Search users.
-- `GET /users/<int:user_id>/`: Get a specific user’s profile.
+### Profile Page of the Logged-in User ![Hero](/frontend/src/images/profile.png)
+
+### Profile Page of Another User ![Hero](/frontend/src/images/profile-user.png)
+
+### Posts Page ![Hero](/frontend/src/images/posts.png)
+
+### Networking Page ![Hero](/frontend/src/images/networking.png)
