@@ -1,0 +1,19 @@
+[tool.ruff]
+line-length = 88
+extend-exclude = ["*/project/*", "manage.py"]
+
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D1",
+    "D203",
+    "D213",
+    "ANN",
+    "ARG",
+    "RUF012",
+    "ISC",
+    "COM812",
+    "FIX002",
+    "PD011",
+]

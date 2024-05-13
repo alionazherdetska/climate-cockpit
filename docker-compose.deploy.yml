@@ -1,0 +1,74 @@
+version: "3.9"
+
+x-django-environment: &django-environment
+  DJANGO_SECRET_KEY:
+  DJANGO_DEBUG:
+  EMAIL_HOST:
+  EMAIL_PORT:
+  EMAIL_USE_TLS:
+  EMAIL_HOST_USER:
+  EMAIL_HOST_PASSWORD:
+  DEFAULT_FROM_EMAIL:
+  OPENAI_API_KEY:
+
+x-postgres-environment: &postgres-environment
+  POSTGRES_HOST:
+  POSTGRES_PORT:
+  POSTGRES_USER:
+  POSTGRES_PASSWORD:
+  POSTGRES_DB:
+
+services:
+  app:
+    image: ${CI_REGISTRY_IMAGE}:master
+    env_file:
+      - ./envs/base.env
+    environment:
+      <<:
+        - *django-environment
+        - *postgres-environment
+    command: sh /scripts/prod.sh
+    volumes:
+      - static_files:/static-files
+      - media_files:/media-files
+      - build:/frontend/dist
+    depends_on:
+      - postgres
+
+  email:
+    image: ${CI_REGISTRY_IMAGE}:master
+    command: "python app/manage.py send_mail"
+    env_file:
+      - ./envs/base.env
+    environment:
+      <<:
+        - *django-environment
+        - *postgres-environment
+    depends_on:
+      - postgres
+      - app
+
+  postgres:
+    image: postgres:16.0
+    environment:
+      <<: *postgres-environment
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:1.25.2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d/
+      - static_files:/static-files
+      - media_files:/media-files
+      - build:/build
+      - /etc/letsencrypt:/etc/letsencrypt
+
+volumes:
+  postgres_db:
+  static_files:
+  media_files:
+  build:

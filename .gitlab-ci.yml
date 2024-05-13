@@ -1,0 +1,57 @@
+stages:
+  - pull
+  - build
+  - lint
+  - push
+  - cleanup
+  - deploy
+
+before_script:
+  - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
+
+pull:
+  stage: pull
+  allow_failure: true
+  script:
+    - docker pull "$CI_REGISTRY_IMAGE:master"
+
+build:
+  stage: build
+  script:
+    - docker build --tag="$CI_PIPELINE_ID:$CI_COMMIT_REF_NAME"
+      --cache-from="$CI_REGISTRY_IMAGE:master" .
+
+lint:
+  stage: lint
+  when: always
+  script:
+    - docker run --rm "$CI_PIPELINE_ID:$CI_COMMIT_REF_NAME" ruff check .
+    - docker run --rm "$CI_PIPELINE_ID:$CI_COMMIT_REF_NAME" /bin/sh -c "cd
+      /frontend && npm run lint"
+
+push:
+  stage: push
+  only:
+    - master
+  script:
+    - docker tag "$CI_PIPELINE_ID:$CI_COMMIT_REF_NAME"
+      "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+
+cleanup:
+  stage: cleanup
+  when: always
+  script:
+    - docker rmi -f "$CI_PIPELINE_ID:$CI_COMMIT_REF_NAME"
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - export CI_REGISTRY_IMAGE="$CI_REGISTRY_IMAGE"
+    - docker compose -p climate_cockpit -f docker-compose.deploy.yml pull
+    - docker compose -p climate_cockpit -f docker-compose.deploy.yml down
+      --remove-orphans
+    - docker volume rm climate_cockpit_build || true
+    - docker compose -p climate_cockpit -f docker-compose.deploy.yml up -d

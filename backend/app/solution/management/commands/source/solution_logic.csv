@@ -1,0 +1,31 @@
+solution,selection_rule,"impact_detail"
+No Cooking with Gas,Can be combined with other solutions,"{""residential_building"": 1}"
+No Heating with Oil,Can be combined with other solutions,"{""residential_building"": 5}"
+Minergie A Building,"If selected, others solutions in category are deselected","{""residential_building"": 8}"
+Clean Electricity,"If selected, others solutions in category are deselected",
+Renewable Electricity,"If selected, others solutions in category are deselected",
+Solar Pannels,"If selected, others solutions in category are deselected","{""electricity"": 1}"
+Vegetarian,"If selected, others solutions in category are deselected","{""meat_cow"": 2, ""other_meat"": 1}"
+No Beef & Diary,"If selected, others solutions in category are deselected","{""meat_cow"": 2, ""milk_cow"": 2}"
+Vegan,"If selected, others solutions in category are deselected","{""meat_cow"": 2, ""milk_cow"": 2, ""other_meat"": 1}"
+Buy Local,Can be combined with other solutions,"{""import"": 5}"
+Reduce & Reuse,Can be combined with other solutions,"{""import"": 5}"
+Offset Consumption,Can be combined with other solutions,"{""import"": 5}"
+Boycott Climate Offenders,"If selected, others solutions in category are deselected","{""factory"": 10}"
+Buy only climate-friendly,"If selected, others solutions in category are deselected","{""factory"": 10, ""commercial_building"": 2, ""truck"": 1, ""freight_plane"": 1, ""industry_trash"": 1}"
+Buy only climate-neutral,"If selected, others solutions in category are deselected","{""factory"": 10, ""commercial_building"": 4, ""truck"": 3, ""freight_plane"": 1, ""industry_trash"": 2}"
+Follow Innovation,Can be combined with other solutions,"{""innovation"": 1}"
+Support Innovation,Can be combined with other solutions,"{""innovation"": 1}"
+Innovate yourself,Can be combined with other solutions,"{""innovation"": 1}"
+No (Fossil) Investments,Can be combined with other solutions,"{""money"": 1}"
+Green Finances,Can be combined with other solutions,"{""money"": 1}"
+Green Investmets,Can be combined with other solutions,"{""money"": 1}"
+Protect Ecosystems,"If selected, others solutions in category are deselected",
+Restore Ecosystems,"If selected, others solutions in category are deselected","{""tree"": 2}"
+Leave Half to Nature,"If selected, others solutions in category are deselected","{""tree"": 4}"
+No Flying,Can be combined with other solutions,"{""passanger_plane"": 1}"
+Electric Car,"If selected, ""No Car"" is deselected","{""car"": 5}"
+No Car,"If selected, ""Electric Car"" is deselected","{""car"": 10}"
+Recycling,Can be combined with other solutions,
+Composting,Can be combined with other solutions,
+Zero Waste,Can be combined with other solutions,"{""residential_trash"": 1}"

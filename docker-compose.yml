@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  app:
+    image: climate-cockpit:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/backend
+      - ./media-files:/media-files
+      - ./static-files:/static-files
+    command: "sh /scripts/dev.sh"
+    env_file:
+      - ./envs/base.env
+      - .dev.env
+    depends_on:
+      - postgres
+
+  email:
+    image: climate-cockpit:latest
+    volumes:
+      - ./backend:/backend
+    command: "python app/manage.py send_mail"
+    env_file:
+      - ./envs/base.env
+      - .dev.env
+    depends_on:
+      - postgres
+      - app
+
+  postgres:
+    image: postgres:16.0
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./envs/base.env
+      - .dev.env
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
+volumes:
+  postgres_db:

@@ -1,0 +1,61 @@
+{% load static fullurl %}
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ subject }}</title>
+    <style>
+      body {
+        background-color: #e1e1e1;
+        text-align: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        text-align: left;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        color: #0066cc;
+      }
+
+      .header h3 {
+        font-size: 24px;
+        margin: 0;
+      }
+
+      .content {
+        font-size: 16px;
+        color: #333333;
+        padding-bottom: 16px;
+      }
+
+      .footer {
+        font-size: 13px;
+        color: #828282;
+        text-align: center;
+        line-height: 120%;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3>{{ subject }}</h3>
+      </div>
+      <div class="content">
+        {% block content %} {{ content | linebreaks }} {% endblock %}
+      </div>
+      <div class="footer">
+        {% block footer %} {{ footer | linebreaks }} {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

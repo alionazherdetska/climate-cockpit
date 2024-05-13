@@ -1,0 +1,19 @@
+name,initial_amount,altered_type,group,subgroup,icon_name_initial,icon_name_altered
+factory,10,reduction,Inland Enissions,Industry,Indstry.png,Indstry_Blue.png
+commercial_building,4,reduction,Inland Enissions,Industry,Buildings_Commercial.png,Buildings_Commercial_Blue.png
+truck,3,reduction,Inland Enissions,Industry,Transport_Trucks.png,Transport_Trucks_Blue.png
+freight_plane,1,reduction,Inland Enissions,Industry,Transport_Plane_Freight.png,Transport_Plane_People_Blue.png
+industry_trash,2,reduction,Inland Enissions,Industry,Trash_Industry.png,Trash_Industry_Blue.png
+residential_building,8,reduction,Inland Enissions,Households,Buildings_Residential.png,Buildings_Residential_Blue
+passanger_plane,1,reduction,Inland Enissions,Households,Transport_Plane_People.png,Transport_Plane_People_Blue.png
+residential_trash,1,reduction,Inland Enissions,Households,Trash_Residential.png,Trash_Residential_Blue.png
+car,10,reduction,Inland Enissions,Households,Transport_Cars.png,Transport_Cars_Blue.png
+milk_cow,2,reduction,Inland Enissions,Agriculture,Agriculture_Cow_Milk.png,Agriculture_Cow_Milk_Blue.png
+meat_cow,2,reduction,Inland Enissions,Agriculture,Agriculture_Cow_Meat.png,Agriculture_Cow_Meat_Blue.png
+other_meat,1,reduction,Inland Enissions,Agriculture,Agriculture_Other_Meat.png,Agriculture_Other_Meat_Blue.png
+plant,1,reduction,Inland Enissions,Agriculture,Agriculture_Plants.png,Agriculture_Plants_Blue.png
+electricity,1,reduction,Inland Enissions,Electricity,Electricity.png,Electricity_Blue.png
+import,71,reduction,Imports,Imports,Imports_Secondary.png,Imports_SecondaryBlue.png
+tree,2,addition,Removal,Removal,Nature.png,Nature_Blue.png
+innovation,0,addition,Badges,Innovation,Innovation.png,
+money,0,addition,Badges,Money,Money.png,
